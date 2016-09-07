@@ -1,3 +1,4 @@
+require('isomorphic-fetch');
 var FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 var FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
 
@@ -14,10 +15,11 @@ var fetchDataError = function(error){
     error: error
   };
 };
-
+//Fetch async calls 
 var fetchData = function() {
    return function(dispatch) {
-       var url = 'http://localhost:8080/api';
+    //match it to the server.js
+       var url = 'http://localhost:8080/api/hello';
        return fetch(url).then(function(response) {
            if (response.status < 200 || response.status >= 300) {
                var error = new Error(response.statusText);
@@ -28,13 +30,12 @@ var fetchData = function() {
        })
  
        .then(function(data) {
-               console.log("DATA", data);
+               console.log("fetch DATA promise: ", data);
            return dispatch(
                fetchDataSuccess(data)
            );
        })
        .catch(function(error) {
-           var error = "error";
            return dispatch(
                fetchDataError(error)
            );

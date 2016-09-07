@@ -11,14 +11,20 @@ var instaData = require('./components/dummyData.js');
 //children components:
 var SearchBar = require('./components/search-bar-component');
 var ImageList = require('./components/ImageList-component');
+var actions = require('./actions');
 var store = require('./store');
 
 
 var Board = React.createClass({
+	componentWillMount: function(){
+		console.log("before dispatch", this.props.message);
+		this.props.dispatch(actions.fetchData());
+	},
 	render: function(){
+		console.log("after dispatch ", this.props.message);
 		return(
 			<div className='Board'>
-			{this.props.message}
+				{this.props.message}
 				<h1 className='text-center'>InstaWinner</h1>
 				<SearchBar />
 				<ImageList />
