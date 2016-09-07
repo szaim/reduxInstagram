@@ -1,11 +1,33 @@
-var express = require('express');
+import 'babel-polyfill';
+import express from 'express';
 
-var app = express();
+const HOST = process.env.HOST;
+const PORT = process.env.PORT || 8080;
 
-app.get('/', function(req, res){
-    res.send({title: 'hello World'});
+console.log(`Server running in ${process.env.NODE_ENV} mode`);
+
+let app = express();
+
+app.use(express.static(process.env.CLIENT_PATH));
+
+app.get('/api/hello', function(request, response) {
+    response.json({message: 'Hello from express!'});
 });
 
-app.listen(3000, function(){
-    console.log('Listening on port 3000');
-})
+function runServer() {
+    return new Promise((resolve, reject) => {
+        app.listen(PORT, HOST, (err) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            }
+
+            const host = HOST || 'localhost';
+            console.log(`Listening on ${host}:${PORT}`);
+        });
+    });
+}
+
+if (require.main === module) {
+    runServer();
+}

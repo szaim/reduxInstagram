@@ -1,10 +1,12 @@
-var update = require('react-addons-update');
+// var update = require('react-addons-update');
 var actions = require('./actions');
 
-var inisitalState = [];
+var initialState = {
+	message: "Hello From Redux initial state"
+	};
 
 var locationRequest = function(state, action){
-	state = state || inisitalState;
+	state = state || initialState;
 
 	if(action.type === actions.FETCH_DATA_SUCCESS){
 		console.log(state);
