@@ -1,12 +1,19 @@
-import 'babel-polyfill';
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-console.log(`Client running in ${process.env.NODE_ENV} mode`);
+var SearchBar = require('./components/search-bar-component');
 
+var Board = React.createClass({
+	render: function(){
+		return(
+			<div className='Board'>
+				<h1 className='text-center'>InstaWinner</h1>
+				<SearchBar />
+			</div>
+		);
+	}
+});
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-
-ReactDOM.render(
-   <h1>I am react</h1>
-  , document.getElementById('app'));
+document.addEventListener('DOMContentLoaded', function() {
+    ReactDOM.render(<Board />, document.getElementById('app'));
+});
