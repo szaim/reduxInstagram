@@ -1,9 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+var router = require('react-router');
+var Router = router.Router;
+var Route = router.Route;
+var hashHistory = router.hashHistory;
+//dummy Data:
 var instaData = require('./components/dummyData.js');
-console.log(instaData);
-
+//children components:
 var SearchBar = require('./components/search-bar-component');
 var ImageList = require('./components/ImageList-component');
 
@@ -21,6 +24,12 @@ var Board = React.createClass({
 	}
 });
 
+var routes = (
+	<Router history={hashHistory}>
+		<Route path="/app" component={Board} />
+	</Router>
+)
+
 document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(<Board />, document.getElementById('app'));
+    ReactDOM.render(routes, document.getElementById('app'));
 });
