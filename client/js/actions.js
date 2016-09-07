@@ -1,4 +1,3 @@
-require('isomorphic-fetch');
 var FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 var FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
 
